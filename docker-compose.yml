@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  model-a:
+    build: ./services/model_a
+    container_name: model-a
+    ports:
+      - "8001:8000"
+
+  model-b:
+    build: ./services/model_b
+    container_name: model-b
+    ports:
+      - "8002:8000"
+
+  benchmark:
+    build: ./services/benchmark
+    container_name: benchmark
+    depends_on:
+      - model-a
+      - model-b
